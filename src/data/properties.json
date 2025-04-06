@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Пентхаус Loft Олимп",
+    "location": "Shevchenka 12",
+    "price": 120000,
+    "type": "Пентхаус",
+    "photo": "./images/cards/01.jpg",
+    "description": "Розкішний пентхаус з виглядом на місто."
+  },
+  {
+    "name": "Апартаменти Nice Loft",
+    "location": "Shevchenka 14",
+    "price": 95000,
+    "type": "Апартаменти",
+    "photo": "./images/cards/02.jpg",
+    "description": "Світлі та сучасні апартаменти в самому серці міста."
+  },
+  {
+    "name": "Квартира у центрі",
+    "location": "Kharkivska 5",
+    "price": 80000,
+    "type": "Квартира",
+    "photo": "./images/cards/03.jpg",
+    "description": "Затишна квартира з усіма необхідними умовами для комфортного життя."
+  },
+  {
+    "name": "Студія Smart Home",
+    "location": "Pushkina 8",
+    "price": 65000,
+    "type": "Студія",
+    "photo": "./images/cards/04.jpg",
+    "description": "Мала студія з розумною автоматизацією та сучасним дизайном."
+  },
+  {
+    "name": "Елітні Апартаменти Elite View",
+    "location": "Darnytska 3",
+    "price": 150000,
+    "type": "Апартаменти",
+    "photo": "./images/cards/05.jpg",
+    "description": "Розкішні апартаменти з панорамним видом на місто та вражаючими зручностями."
+  },
+  {
+    "name": "Будинок для родини",
+    "location": "Vulytsia 22",
+    "price": 200000,
+    "type": "Будинок",
+    "photo": "./images/cards/06.jpg",
+    "description": "Просторий будинок для великої родини з садом та паркінгом."
+  }
+]
