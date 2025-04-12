@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DominoEstate</title>
+    
+    <link rel="icon"
+      href="images/logo.png"
+      type="image/png"
+    >
+    <link
+      rel="stylesheet"
+      href="styles/styles.css"
+    />
+    <link rel="stylesheet" href="libs/youtubeLightbox/youtubeLightbox.css">
+</head>
+<body>
+    <header class="header none1">
+        <div class="header__top">
+            <div class="container">
+                <div class="header__top-row">
+
+                    <a 
+                      href="#!"
+                      class="top-bar__logo-link"
+                      >
+                        <img src="images/logo.png" alt="DominoEstate"
+                          class="top-bar__logo"
+                        >
+                    </a>
+
+                    <div class="header__nav">
+                        <nav class="nav">
+                            <ul class="nav__list">
+                                <li><a href="#about-complex">About the Complex</a></li>
+                                <li><a href="#map-section">Location</a></li>
+                                <li><a href="#apartments-catalog">Apartments Catalog</a></li>
+                                <li><a href="#contacts">FAQ & Contact Section </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="header__nav-btn">
+                        <button class="nav-icon-btn">
+                            <div class="nav-icon"></div>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1 class="header__title">
+              A heritage-inspired <br>
+              residential project in the city’s core
+                <a href="#about-complex">
+                    <img src="images/header/mouse.svg"
+                        alt="Scroll next"
+                        class="header__title-icon"
+                    >
+                </a>
+            </h1>
+        </div>
+
+        <div class="header__footer">
+            <div class="text-right">
+                <a href="#map" class="info info--map"> <img src="images/header/map.svg"
+                  alt="Map icon"> Shevchenka 12</a>
+            </div>
+            <a href="tel:+380671234567" class="info info--tel"> <img src="images/header/phone.svg"
+              alt="Phone icon"> +380 67 123 45 67</a>
+        </div>
+    </header>
+
+    <main>
+        <section 
+          class="benefits none1"
+          id="about-complex"
+        >
+        <div class="container"></div>
+        <div class="apartments__title">
+          <h2 class="visually-hidden">Benefits of the residential complex</h2>
+      </div>
+          
+            <div class="container container--sm">
+                <div class="benefits__row">
+
+                    <div class="benefits__item">
+                        <img src="images/benefits/bench.svg" alt="" class="benefits__item-img">
+                        <p class="benefits__item-text">Located near historic parks and gardens</p>
+                    </div>
+
+                    <div class="benefits__item">
+                        <img src="images/benefits/building.svg" alt="" class="benefits__item-img">
+                        <p class="benefits__item-text">Fully furnished and ready</p>
+                    </div>
+
+                    <div class="benefits__item">
+                        <img src="images/benefits/fountain.svg" alt="" class="benefits__item-img">
+                        <p class="benefits__item-text">There are 3 playgrounds and fountains on the premises</p>
+                    </div>
+
+                    <div class="benefits__item">
+                        <img src="images/benefits/bicycle.svg" alt="" class="benefits__item-img">
+                        <p class="benefits__item-text">There is a cycling path for active recreation</p>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+
+        </section>
+
+        <section class="apartments" id="apartments-catalog">
+          <div class="container">
+        
+            <div class="apartments__title">
+              <h2 class="title-2">Our apartments</h2>
+            </div>
+        
+            <input type="text" id="searchInput" placeholder="Пошук...">
+            <div id="resultsContainer"></div>
+        
+          </div>
+        </section>
+        
+        <script>
+          let properties = [];
+          fetch('data/properties.json')
+            .then(response => response.json())
+            .then(data => {
+              properties = data;
+              renderProperties(properties);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        
+          // Рендеринг карток
+          function renderProperties(data) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = '';  // Очистити контейнер перед рендерингом
+        
+            if (data.length === 0) {
+              container.innerHTML = '<p>Нічого не знайдено</p>';
+              return;
+            }
+        
+            data.forEach(item => {
+              const card = document.createElement('div');
+              card.classList.add('property-card');
+              card.innerHTML = `
+                <div class="card">
+                  <img class="card__img" src="${item.photo}" alt="${item.name}">
+                  <div class="card__content">
+                    <h3 class="card__title">${item.name}</h3>
+                    <div class="card__details">
+                      <p><strong>Локація:</strong> ${item.location}</p>
+                      <p><strong>Ціна:</strong> $${item.price}</p>
+                      <p><strong>Тип:</strong> ${item.type}</p>
+                      <p>${item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.appendChild(card);
+            });
+          }
+        
+          // Пошук
+          document.getElementById('searchInput').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+        
+            const filtered = properties.filter(item =>
+              item.name.toLowerCase().includes(query) ||
+              item.description.toLowerCase().includes(query) ||
+              item.location.toLowerCase().includes(query) ||
+              item.type.toLowerCase().includes(query)
+            );
+        
+            renderProperties(filtered);  // Відображаємо відфільтровані дані
+          });
+        </script>
+
+        <section class="cta none1">
+            <div class="container">
+                <div class="cta__title">
+                    <h2 class="title-2">Would you like to take a look?</h2>
+                </div>
+                <div class="cta__wrapper">
+
+                    <div class="cta__text">
+                        <p>DominoEstate Residential Complex is a business-class project located in the city center, on Nab. reki Fontanki 10-15. The complex offers apartments ranging from 40 to 170 sq. m. The building will have three sections, housing a total of 56 apartments</p>
+                    </div>
+
+                    <form action="" class="cta__form form">
+                        <input type="text" class="form__input" placeholder="Your name" autocomplete="off">
+                        <input data-tel-input type="text" class="form__input" placeholder="Your phone number" autocomplete="off">
+
+                        <p class="form__privacy form__privacy--bottom">
+                          We do not share your data with anyone. <br>And we do not store your number in our database.
+                        </p>
+
+                        <button type="submit" class="form__btn">View the neighborhood</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="video none1">
+            <h2 class="visually-hidden">Video about the Loft House residential complex</h2>
+            <div class="container">
+
+                <a href="https://www.youtube.com/watch?v=IvMvWvGxY7U" data-youtubeLightbox class="video__link">
+                    <img src="images/video/play.svg" alt="" class="video__icon">
+                    <img src="images/video/video-img.jpg" alt="" class="video__img">
+                </a>
+            </div>
+        </section>
+
+        <section class="section-map" id="map-section">
+          <div class="container">
+              <div class="section-map__title">
+                  <h2 class="title-2">District on the map</h2>
+              </div>
+              <div class="section-map__map">
+                  <div class="map" id="google-map"></div>
+              </div>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=..."
+                width="100%" height="450" style="border:0;" 
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+          </div>
+      </section>
+
+        <section class="feedback none1" id="contacts">
+            <div class="container">
+                <div class="feedback__title">
+                    <h2 class="title-2">Do you have any questions?</h2>
+                </div>
+                <form class="feedback__form form">
+
+                    <p class="form__privacy form__privacy--bottom">
+                      We do not share your data with anyone. <br>And we do not store your number in our database.
+                    </p>
+
+                    <input type="text" class="form__input" placeholder="Your name" autocomplete="off">
+                    <input data-tel-input type="text" class="form__input" placeholder="Your phone number" autocomplete="off">
+
+                    <button type="submit" class="form__btn">View the area</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer none1">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__logo">
+                    <a href="#!">
+                        <img src="images/logo.png" alt="DominoEstate">
+                    </a>
+                </div>
+
+                <div class="footer__address">
+                    <ul class="footer__nav-list">
+                        <li>Street: Shevchenka 12</li>
+                        <li>Phone: +380 67 123 45 67<a href="tel:+380 67 123 45 67"></a></li>
+                        <li>Sales department: 10:00 - 20:00</li>
+                        <li>E-mail: <a class="link-bold" href="mailto:modern@dominoestate.ua">modern@dominoestate.ua</a></li>
+                    </ul>
+                    <ul class="footer__socials">
+                        <li><a href="#!"><img src="images/socials/youtube.svg" alt=""></a></li>
+                        <li><a href="#!"><img src="images/socials/facebook.svg" alt=""></a></li>
+                        <li><a href="#!"><img src="images/socials/instagram.svg" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="youtubelightbox" class="youtubelightbox">
+        <div class="youtubelightbox__centeredchild">
+            <div class="youtubelightbox__videowrapper">
+                <div id="youtubelightboxPlayer"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="libs/youtubeLightbox/youtubeLightbox.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
