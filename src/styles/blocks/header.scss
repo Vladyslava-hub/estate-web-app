@@ -64,13 +64,6 @@ background: linear-gradient(
 
 }
 
-.menu {
-  display: none;
-  &.menu--open {
-    display: block;
-  }
-}
-
 .header__nav {
   @include mediaTablet {
       display: none;
