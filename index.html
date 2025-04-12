@@ -67,11 +67,9 @@
 
         <div class="header__footer">
             <div class="text-right">
-                <a href="#map" class="info info--map"> <img src="images/header/map.svg"
-                  alt="Map icon"> Shevchenka 12</a>
+                <a href="#map" class="info info--map"> Shevchenka 12</a>
             </div>
-            <a href="tel:+380671234567" class="info info--tel"> <img src="images/header/phone.svg"
-              alt="Phone icon"> +380 67 123 45 67</a>
+            <a href="tel:+380671234567" class="info info--tel"> +380 67 123 45 67</a>
         </div>
     </header>
 
@@ -129,7 +127,7 @@
         
         <script>
           let properties = [];
-          fetch('data/properties.json')
+          fetch('src/data/properties.json')
             .then(response => response.json())
             .then(data => {
               properties = data;

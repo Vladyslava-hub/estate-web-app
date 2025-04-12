@@ -3,7 +3,7 @@
 
   async function fetchData() {
     try {
-      const res = await fetch('./data/properties.json');
+      const res = await fetch('src/data/properties.json');
       if (!res.ok) {
         throw new Error('Помилка при завантаженні JSON');
       }
